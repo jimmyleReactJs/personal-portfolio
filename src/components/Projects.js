@@ -1,4 +1,4 @@
-import { Container, Row, Col, Tab, Nav} from "react-bootstrap"
+import { Container, Row, Col, Tab, Nav } from "react-bootstrap"
 import { ProjectCard } from "./ProjectCard"
 import colorSharp2 from "../assets/img/color-sharp2.png"
 import projImg1 from "../assets/img/project-img1.png"
@@ -8,38 +8,43 @@ import TrackVisibility from "react-on-screen"
 import { isVisible } from "@testing-library/user-event/dist/utils"
 import "animate.css"
 
-export const Projects = () => {
+export const Projects = ({ onOpenPopup }) => {
 
     const projects = [
         {
-            title: "Business Startup",
+            title: "Customs Declaration Management Systems",
             description: "Design & Development",
             imgUrl: projImg1,
+            popupContent: "Frontend & Backend Project",
+            Details: "Systems for logistics companies such as Amerasian Shipping Logistics (ASL) and WR1 NVOCC.",
         },
         {
-            title: "Business Startup",
+            title: "Customer Relationship Management",
             description: "Design & Development",
             imgUrl: projImg2,
+            popupContent: "Frontend Project",
+            Details: "Software for Pudong Prime International Co Ltd. to manage their customer base..",
         },
         {
-            title: "Business Startup",
+            title: "Movie Website",
             description: "Design & Development",
             imgUrl: projImg3,
+            popupContent: "Fullstack Project",
+            Details: "Responsive movie streaming website.",
         },
         {
-            title: "Business Startup",
+            title: "Forecast Application",
             description: "Design & Development",
             imgUrl: projImg1,
+            popupContent: "Fullstack Project",
+            Details: "Systems for logistics companies such as Amerasian Shipping Logistics (ASL) and WR1 NVOCC.",
         },
         {
-            title: "Business Startup",
+            title: "Personal Portfolio Website",
             description: "Design & Development",
             imgUrl: projImg2,
-        },
-        {
-            title: "Business Startup",
-            description: "Design & Development",
-            imgUrl: projImg3,
+            popupContent: "Frontend Project",
+            Details: "Getting temperature, max, min, humidity, real feel, sunrise, sunset, hourly, and daily forecast. We will also display the local time at the selected location.",
         },
     ]
 
@@ -48,12 +53,12 @@ export const Projects = () => {
             <Container>
                 <Row>
                     <Col>
-                    <TrackVisibility>
+                        <TrackVisibility>
                             {({ isVisible }) =>
                                 <div className={isVisible ? "animate__animated animate__slideInUp" : ""}>
-                        <h2>Projects</h2>
-                        <p>Here are a few projects I've worked on recently.</p>
-                        </div>}
+                                    <h2>Projects</h2>
+                                    <p>Here are a few projects I've worked on recently.</p>
+                                </div>}
                         </TrackVisibility>
                         <Tab.Container id="projects-tabs" defaultActiveKey="first">
                             <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
@@ -61,7 +66,7 @@ export const Projects = () => {
                                     <Nav.Link eventKey="first">Tab One</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="second">Tab Two</Nav.Link>
+                                    <Nav.Link eventKey="second" disabled>Tab Two</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
                                     <Nav.Link eventKey="third" disabled>
@@ -75,9 +80,12 @@ export const Projects = () => {
                                         {
                                             projects.map((project, index) => {
                                                 return (
-                                                    <ProjectCard 
-                                                    key={index}
-                                                    {...project}
+                                                    <ProjectCard
+                                                        key={index}
+                                                        title={project.title}
+                                                        description={project.description}
+                                                        imgUrl={project.imgUrl}
+                                                        onButtonClick={() => onOpenPopup(project.popupContent, project.Details)}
                                                     />
                                                 )
                                             })

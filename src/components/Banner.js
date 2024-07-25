@@ -54,7 +54,7 @@ export const Banner = () => {
                                     <span className="tagline">Welcome to my Porfolio</span>
                                     <h1>{`Hi I'm webdecode `}<span className="wrap">{text}</span></h1>
                                     <p>I'm a web developer with a passion for creating beautiful and functional websites. I have</p>
-                                    <button onClick={() => console.log('connect')}>Let's connect<ArrowRightCircle size={25} /></button>
+                                    {/* <button onClick={() => console.log('connect')}>Let's connect<ArrowRightCircle size={25} /></button> */}
                                 </div>
                             }
                         </TrackVisibility>
